@@ -8,6 +8,7 @@
 
 #include <string>
 #include <vector>
+#include <optional>
 
 class Student {
     constexpr static const double AVERAGE_WEIGHT = 0.4;
@@ -19,6 +20,11 @@ class Student {
     int examResult;
 
 public:
+    Student();
+    Student(const Student &other);
+    Student &operator=(const Student &other);
+    ~Student();
+
     Student& setFirstName(std::string firstName);
     Student& setLastName(std::string lastName);
     Student& setHomeworkResult(int mark);

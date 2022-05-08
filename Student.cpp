@@ -7,6 +7,38 @@
 #include <iostream>
 #include "Faker.h"
 
+Student::Student() : examResult() {}
+
+Student::Student(const Student &other) {
+    this->firstName = other.firstName;
+    this->lastName = other.lastName;
+
+    std::copy(other.homeworks.begin(), other.homeworks.end(), std::back_inserter(this->homeworks));
+
+    this->examResult = other.examResult;
+}
+
+Student &Student::operator=(const Student &other) {
+    if (&other == this) {
+        return *this;
+    }
+
+    this->firstName = other.firstName;
+    this->lastName = other.lastName;
+
+    std::copy(other.homeworks.begin(), other.homeworks.end(), std::back_inserter(this->homeworks));
+
+    this->examResult = other.examResult;
+
+    return *this;
+}
+
+Student::~Student() {
+    this->firstName.clear();
+    this->lastName.clear();
+    this->homeworks.clear();
+}
+
 Student &Student::setFirstName(std::string firstName) {
     this->firstName = std::move(firstName);
 
@@ -56,7 +88,7 @@ int Student::getExamResult() {
 double Student::calculateHomeworkAverage() {
     double average = 0;
 
-    for (int homework : this->homeworks) {
+    for (int homework: this->homeworks) {
         average += homework;
     }
 
@@ -72,7 +104,8 @@ double Student::calculateHomeworkMedian() {
         return (double) this->homeworks[this->homeworks.size() / 2];
     }
 
-    return (double) (this->homeworks[(this->homeworks.size() - 1) / 2] + this->homeworks[this->homeworks.size() / 2]) / 2;
+    return (double) (this->homeworks[(this->homeworks.size() - 1) / 2] + this->homeworks[this->homeworks.size() / 2]) /
+           2;
 }
 
 double Student::calculateResult(double homeworkMark) {
@@ -91,8 +124,8 @@ Student Student::generateStudent(int homeworksCount) {
     }
 
     student.setFirstName(Faker::randomFirstName())
-        .setLastName(Faker::randomLastName())
-        .setExamResult(Faker::randomMark());
+            .setLastName(Faker::randomLastName())
+            .setExamResult(Faker::randomMark());
 
     return student;
 }
