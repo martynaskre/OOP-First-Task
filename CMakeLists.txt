@@ -4,4 +4,12 @@ project(1_uzd)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS "-O2")
 
-add_executable(1_uzd main.cpp Application.cpp Application.h Student.cpp Student.h Faker.cpp Faker.h Benchmark.cpp Benchmark.h Human.cpp Human.h)
+set(SOURCE_FILES main.cpp)
+add_executable(1_uzd ${SOURCE_FILES})
+
+include_directories(src)
+add_subdirectory(src)
+
+target_link_libraries(1_uzd 1_uzd_src)
+
+add_subdirectory(tests)
