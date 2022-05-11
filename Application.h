@@ -26,6 +26,9 @@ enum ProgramMode {
     benchmark,
 };
 
+/**
+ * Application class is responsible for running entire application.
+ */
 class Application {
     std::deque<Student> students;
     std::deque<Student> smartStudents;

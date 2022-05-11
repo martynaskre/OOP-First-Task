@@ -10,6 +10,9 @@
 #include <vector>
 #include "Human.h"
 
+/**
+ * Student is derived from Human class and is responsible for adding additional properties to human object.
+ */
 class Student: public Human {
     constexpr static const double AVERAGE_WEIGHT = 0.4;
     constexpr static const double EXAM_WEIGHT = 0.6;

@@ -9,6 +9,9 @@
 #include <string>
 #include <vector>
 
+/**
+ * Human class is responsible for representing basic human properties, e.g. first name.
+ */
 class Human {
 protected:
     std::string firstName;

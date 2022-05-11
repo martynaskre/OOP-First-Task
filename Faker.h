@@ -9,6 +9,9 @@
 #include <string>
 #include <random>
 
+/**
+ * Faker class is responsible for generating fake data, e.g. first and last names, numbers and etc.
+ */
 class Faker {
     static const std::vector<std::string> firstNames;
     static const std::vector<std::string> lastNames;

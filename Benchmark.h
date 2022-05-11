@@ -14,6 +14,9 @@ struct BenchmarkResult {
     std::string title;
 };
 
+/**
+ * Benchmark class is responsible for running and storing benchmark results.
+ */
 class Benchmark {
     static std::map<std::string, BenchmarkResult> benchmarks;
 
