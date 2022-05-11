@@ -7,6 +7,8 @@
 #include <iostream>
 #include "Faker.h"
 
+void Student::f() {}
+
 Student::Student() : examResult() {}
 
 Student::Student(const Student &other) {
@@ -39,42 +41,16 @@ Student::~Student() {
     this->homeworks.clear();
 }
 
-Student &Student::setFirstName(std::string firstName) {
-    this->firstName = std::move(firstName);
-
-    return *this;
-}
-
-Student &Student::setLastName(std::string lastName) {
-    this->lastName = std::move(lastName);
-
-    return *this;
-}
-
-Student &Student::setHomeworkResult(int mark) {
+void Student::setHomeworkResult(int mark) {
     this->homeworks.push_back(mark);
-
-    return *this;
 }
 
-Student &Student::setHomeworkResults(std::vector<int> homeworks) {
+void Student::setHomeworkResults(std::vector<int> homeworks) {
     this->homeworks = std::move(homeworks);
-
-    return *this;
 }
 
-Student &Student::setExamResult(int mark) {
+void Student::setExamResult(int mark) {
     this->examResult = mark;
-
-    return *this;
-}
-
-std::string Student::getFirstName() {
-    return this->firstName;
-}
-
-std::string Student::getLastName() {
-    return this->lastName;
 }
 
 std::vector<int> Student::getHomeworkResults() {
@@ -123,9 +99,9 @@ Student Student::generateStudent(int homeworksCount) {
         student.setHomeworkResult(Faker::randomMark());
     }
 
-    student.setFirstName(Faker::randomFirstName())
-            .setLastName(Faker::randomLastName())
-            .setExamResult(Faker::randomMark());
+    student.setExamResult(Faker::randomMark());
+    student.setFirstName(Faker::randomFirstName());
+    student.setLastName(Faker::randomLastName());
 
     return student;
 }

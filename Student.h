@@ -8,31 +8,27 @@
 
 #include <string>
 #include <vector>
-#include <optional>
+#include "Human.h"
 
-class Student {
+class Student: public Human {
     constexpr static const double AVERAGE_WEIGHT = 0.4;
     constexpr static const double EXAM_WEIGHT = 0.6;
 
-    std::string firstName;
-    std::string lastName;
     std::vector<int> homeworks;
     int examResult;
 
 public:
+    void f() override;
+
     Student();
     Student(const Student &other);
     Student &operator=(const Student &other);
     ~Student();
 
-    Student& setFirstName(std::string firstName);
-    Student& setLastName(std::string lastName);
-    Student& setHomeworkResult(int mark);
-    Student& setHomeworkResults(std::vector<int> homeworks);
-    Student& setExamResult(int mark);
+    void setHomeworkResult(int mark);
+    void setHomeworkResults(std::vector<int> homeworks);
+    void setExamResult(int mark);
 
-    std::string getFirstName();
-    std::string getLastName();
     std::vector<int> getHomeworkResults();
     int getExamResult();
 

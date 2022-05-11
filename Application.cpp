@@ -160,8 +160,8 @@ void Application::processIndividualStudent() {
     do {
         Student student;
 
-        student.setFirstName(this->gatherStringValue("Iveskite studento varda: ", "Studento vardas tuscias."))
-                .setLastName(this->gatherStringValue("Iveskite studento pavarde: ", "Studento pavarde tuscia."));
+        student.setFirstName(this->gatherStringValue("Iveskite studento varda: ", "Studento vardas tuscias."));
+        student.setLastName(this->gatherStringValue("Iveskite studento pavarde: ", "Studento pavarde tuscia."));
 
         int marksCount = this->gatherIntValue("Iveskite pazymiu skaiciu: ", "Neteisingas pazymiu skaicius.");
 
@@ -225,32 +225,30 @@ void Application::writeData(const std::string& filename, std::deque<Student>& st
 
     this->writer.write(header.str().c_str(), header.str().length());
 
-    for (auto & i : students) {
+    for (auto student: students) {
         std::stringstream studentLine;
 
-        Student *student = &i;
-
-        studentLine << std::left << std::setw(20) << student->getFirstName();
-        studentLine << std::left << std::setw(20) << student->getLastName();
+        studentLine << std::left << std::setw(20) << student.getFirstName();
+        studentLine << std::left << std::setw(20) << student.getLastName();
         studentLine << std::setprecision(2);
 
         if (this->dataSource == prompt) {
             if (this->calculationMode == median) {
-                studentLine << student->calculateResult(
-                        student->calculateHomeworkMedian()
+                studentLine << student.calculateResult(
+                        student.calculateHomeworkMedian()
                 );
             } else {
-                studentLine << student->calculateResult(
-                        student->calculateHomeworkAverage()
+                studentLine << student.calculateResult(
+                        student.calculateHomeworkAverage()
                 );
             }
         } else {
-            studentLine << std::left << std::setw(20) << student->calculateResult(
-                    student->calculateHomeworkAverage()
+            studentLine << std::left << std::setw(20) << student.calculateResult(
+                    student.calculateHomeworkAverage()
             );
 
-            studentLine << std::left << std::setw(20) << student->calculateResult(
-                    student->calculateHomeworkMedian()
+            studentLine << std::left << std::setw(20) << student.calculateResult(
+                    student.calculateHomeworkMedian()
             );
         }
 
@@ -275,8 +273,8 @@ void Application::processStudentsFromFile() {
 
         lineStream >> firstName >> lastName;
 
-        student.setFirstName(firstName)
-            .setLastName(lastName);
+        student.setFirstName(firstName);
+        student.setLastName(lastName);
 
         std::vector<int> marks;
         int mark;
