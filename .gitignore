@@ -78,3 +78,5 @@ fabric.properties
 /cmake-build-debug
 
 .DS_STORE
+
+/latex
